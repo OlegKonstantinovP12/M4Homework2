@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var viewModel = ContentViewModel(network: NetworkManager())
-    
+    @State var position = ScrollPosition()
     var body: some View {
         VStack {
             //Header
@@ -42,6 +42,7 @@ struct ContentView: View {
                 }
             }
             .frame(maxWidth: .infinity, alignment: .bottom)
+            .scrollPosition($position)
             //Textfield
             HStack(spacing: 4) {
                 TextField("Введите запрос...", text: $viewModel.request)
@@ -84,6 +85,7 @@ struct ContentView: View {
         viewModel.sendRequest(promt: viewModel.request)
         viewModel.request = ""
         viewModel.isLoading.toggle()
+        position.scrollTo(edge: .bottom)
     }
 }
 

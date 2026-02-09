@@ -18,7 +18,7 @@ class ContentViewModel: ObservableObject {
     @Published var request: String = ""
     @Published var isLoading: Bool = false
     @Published var model: AiModel = .geminiTwoFlash
-    
+
     func sendRequest(promt: String) {
         guard !promt.isEmpty else { return }
         

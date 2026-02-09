@@ -16,7 +16,7 @@ struct MessageView: View {
                 Spacer()
             }
             Text(message.text)
-                .font(message.author == .me ? .system(size: 16, weight: .semibold) : .system(size: 16, weight: .medium))
+                .font(message.author == .me ? .system(size: 16, weight: .semibold) : .system(size: 14, weight: .regular))
                 .padding(10)
                 .background(message.author == .me ? .gray.opacity(0.4) : .clear)
                 .cornerRadius(12)
@@ -29,5 +29,5 @@ struct MessageView: View {
 }
 
 #Preview {
-    MessageView(message: ChatMessage(text: "It learns patterns from data to make predictions or decisions.", author: .me, date: Date()))
+    MessageView(message: ChatMessage(text: "It learns patterns from data to make predictions or decisions.", author: .ai, date: Date()))
 }
