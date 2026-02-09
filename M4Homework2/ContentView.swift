@@ -32,10 +32,7 @@ struct ContentView: View {
                                 Spacer()
                             }
                             .padding(.horizontal, 16)
-                            
-                            
                         }
-                        
                     }
                 }
             }
@@ -56,6 +53,7 @@ struct ContentView: View {
                     }
                 Button {
                     sendRequest()
+                    hideKeyboard()
                     
                 } label: {
                     Image(systemName: "magnifyingglass")
