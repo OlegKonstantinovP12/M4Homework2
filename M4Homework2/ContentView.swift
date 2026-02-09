@@ -14,8 +14,13 @@ struct ContentView: View {
         VStack {
             //Header
             HStack {
-                Text("gemini-2.5-flash")
-                    .font(.system(size: 16, weight: .heavy))
+                Picker(viewModel.model.rawValue, selection: $viewModel.model) {
+                    ForEach(AiModel.allCases, id: \.self) { item in
+                        Text(item.nameModel()).tag(item)
+                            .font(.system(size: 10, weight: .heavy))
+                            .tint(.black)
+                    }
+                }
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 10)
@@ -25,14 +30,14 @@ struct ContentView: View {
                 LazyVStack{
                     ForEach(viewModel.messages) { message in
                         MessageView(message: message)
-                        if viewModel.isLoading {
-                            HStack {
-                                Text("Думаем")
-                                    .font(.system(size: 12, weight: .light))
-                                Spacer()
-                            }
-                            .padding(.horizontal, 16)
+                    }
+                    if viewModel.isLoading {
+                        HStack {
+                            Text("Думаем")
+                                .font(.system(size: 12, weight: .medium))
+                            Spacer()
                         }
+                        .padding(.horizontal, 16)
                     }
                 }
             }
@@ -69,7 +74,6 @@ struct ContentView: View {
                                 .foregroundStyle(.gray)
                         }
                 }
-                
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 10)

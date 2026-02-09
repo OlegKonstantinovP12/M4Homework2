@@ -8,14 +8,14 @@
 import Foundation
 
 protocol NetworkProtocol {
-    func sendRequest(promt: String, completion: @escaping (String) -> ())
+    func sendRequest(promt: String, model: AiModel, completion: @escaping (String) -> ())
 }
 
 class NetworkManager: NetworkProtocol {
     let apiKey = ""
     
-    func sendRequest(promt: String, completion: @escaping (String) -> ()) {
-        guard let url = URL(string: "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent") else { return }
+    func sendRequest(promt: String, model: AiModel, completion: @escaping (String) -> ()) {
+        guard let url = URL(string: "https://generativelanguage.googleapis.com/v1beta/models/\(model.rawValue):generateContent") else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

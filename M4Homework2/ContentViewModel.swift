@@ -17,11 +17,14 @@ class ContentViewModel: ObservableObject {
     @Published var messages: [ChatMessage] = []
     @Published var request: String = ""
     @Published var isLoading: Bool = false
+    @Published var model: AiModel = .geminiTwoFlash
+    
     func sendRequest(promt: String) {
         guard !promt.isEmpty else { return }
+        
         messages.append(ChatMessage(text: promt, author: .me, date: Date()))
         
-        network.sendRequest(promt: promt) { [weak self] response in
+        network.sendRequest(promt: promt, model: model) { [weak self] response in
             guard let self else { return }
             DispatchQueue.main.async {
                 self.messages.append(ChatMessage(text: response, author: .ai, date: Date()))
@@ -29,5 +32,4 @@ class ContentViewModel: ObservableObject {
             }
         }
     }
-    
 }

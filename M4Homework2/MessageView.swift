@@ -10,27 +10,24 @@ import SwiftUI
 struct MessageView: View {
     var message: ChatMessage
     var body: some View {
-        withAnimation(.easeInOut) {
-            HStack {
-                if message.author == .me {
-                    Spacer()
-                }
-                Text(message.text)
-                    .font(message.author == .me ? .system(size: 16, weight: .semibold) : .system(size: 16, weight: .medium))
-                    .padding(10)
-                    .background(message.author == .me ? .gray.opacity(0.4) : .clear)
-                    .cornerRadius(12)
-                if message.author == .ai {
-                    Spacer()
-                }
-                
+        
+        HStack {
+            if message.author == .me {
+                Spacer()
             }
-            .padding(.horizontal, 16)
+            Text(message.text)
+                .font(message.author == .me ? .system(size: 16, weight: .semibold) : .system(size: 16, weight: .medium))
+                .padding(10)
+                .background(message.author == .me ? .gray.opacity(0.4) : .clear)
+                .cornerRadius(12)
+            if message.author == .ai {
+                Spacer()
+            }
         }
-
+        .padding(.horizontal, 16)
     }
 }
 
 #Preview {
-    MessageView(message: ChatMessage(text: "It learns patterns from data to make predictions or decisions.", author: .ai, date: Date()))
+    MessageView(message: ChatMessage(text: "It learns patterns from data to make predictions or decisions.", author: .me, date: Date()))
 }
