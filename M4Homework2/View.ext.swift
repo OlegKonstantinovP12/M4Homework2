@@ -5,4 +5,11 @@
 //  Created by Oleg Konstantinov on 09.02.2026.
 //
 
-import Foundation
+import SwiftUI
+
+extension View {
+    func cornerRadius(_ size: CGFloat) -> some View {
+        self
+            .clipShape(RoundedRectangle(cornerRadius: size))
+    }
+}

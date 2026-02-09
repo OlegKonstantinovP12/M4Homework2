@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct Request: Encodable {
+struct Request: Codable {
     let contents: [Content]
 }
 
-struct Content: Encodable {
+struct Content: Codable {
     let parts: [Part]
 }
 
-struct Part: Encodable {
+struct Part: Codable {
     let text: String
 }

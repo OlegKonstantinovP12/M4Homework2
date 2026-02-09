@@ -8,11 +8,29 @@
 import SwiftUI
 
 struct MessageView: View {
+    var message: ChatMessage
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        withAnimation(.easeInOut) {
+            HStack {
+                if message.author == .me {
+                    Spacer()
+                }
+                Text(message.text)
+                    .font(message.author == .me ? .system(size: 16, weight: .semibold) : .system(size: 16, weight: .medium))
+                    .padding(10)
+                    .background(message.author == .me ? .gray.opacity(0.4) : .clear)
+                    .cornerRadius(12)
+                if message.author == .ai {
+                    Spacer()
+                }
+                
+            }
+            .padding(.horizontal, 16)
+        }
+
     }
 }
 
 #Preview {
-    MessageView()
+    MessageView(message: ChatMessage(text: "It learns patterns from data to make predictions or decisions.", author: .ai, date: Date()))
 }
